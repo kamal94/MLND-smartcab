@@ -214,7 +214,7 @@ class Environment(object):
             self.status_text = "state: {}\naction: {}\nreward: {}".format(agent.get_state(), action, reward)
             #print "Environment.act() [POST]: location: {}, heading: {}, action: {}, reward: {}".format(location, heading, action, reward)  # [debug]
 
-        return reward
+        return (reward, self.done)
 
     def compute_dist(self, a, b):
         """L1 distance between two points."""

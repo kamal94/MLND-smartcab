@@ -24,10 +24,10 @@ I identified the following the be important aspects of the state, and added reas
 #Question 3
 ####  How many states in total exist for the smartcab in this environment? Does this number seem reasonable given that the goal of Q-Learning is to learn and make informed decisions about each state? Why or why not?
 
-Since the first 4 states can either be true or false, the space for the state is 2^4= 16, and the waypoint can hold 3 variables, so that space is 2^4 * 3 = 48, which is a managable state space for a Q learning algorithm of this size and computational capacity.
+Since the first 4 states can either be true or false, the space for the state is 2^4= 16, and the waypoint can hold 3 variables, so that space is 2^4 * 3 = 48, which is a manageable state space for a Q learning algorithm of this size and computational capacity.
 
 
 # Question 4
 #### What changes do you notice in the agent's behavior when compared to the basic driving agent when random actions were always taken? Why is this behavior occurring?
 
-The agent, after 50 iterations, starts to head straight to the target.
+The agent, after 50 iterations, starts to head straight to the target. This behavior is occurring because of the Q learning algorithm I implemented. This algorithm ensures that the smartcab learns from the rewards it receives from the environment. In essence, the Q learning algorithm records and updates what the smartcab took at each state and the reward it received for that action. The policy of the smartcab is to take the best action given by the Q algorithm 75% of the time, and make a random choice 25% of the time. The 25% random choice ensures that the smartcab does not get stuck in a local minimum due to improper initialization or an early mistake.  
