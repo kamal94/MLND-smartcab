@@ -1,6 +1,9 @@
 Kamal Kamalaldin
+
 10/29/2016
+
 Udacity MLND program
+
 Smartcab project
 
 ###Project Report
@@ -35,15 +38,16 @@ The agent, after 50 iterations, starts to head straight to the target. This beha
 # Question 5
 #### Report the different values for the parameters tuned in your basic implementation of Q-Learning. For which set of parameters does the agent perform best? How well does the final driving agent perform?
 
+##### *Note that the files Environment.py and Simulation.py were modified in order to allow the collection of simulation results.*
 I implemented a graphing function taken from the different simulations with different ranges of values for alpha, gamma, and epsilon. This function plots the success rate of the last 10 trials, beginning from trial 10.
 
 The following are some of the good parameters, and one is labeled as BEST.
 
-alpha: 0.9, gamma: 0.0, epsilon:0.1
-alpha: 0.3, gamma: 0.9, epsilon:0.1
-alpha: 0.3, gamma: 0.3, epsilon:0.1
-alpha: 0.6, gamma: 0.3, epsilon:0.1 BEST
-alpha: 0.6, gamma: 0.3, epsilon:0.3
+* alpha: 0.9, gamma: 0.0, epsilon:0.1
+* alpha: 0.3, gamma: 0.9, epsilon:0.1
+* alpha: 0.3, gamma: 0.3, epsilon:0.1
+* alpha: 0.6, gamma: 0.3, epsilon:0.1 BEST
+* alpha: 0.6, gamma: 0.3, epsilon:0.3
 
 
 # Question 6
