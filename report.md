@@ -50,3 +50,4 @@ alpha: 0.6, gamma: 0.3, epsilon:0.3
 #### Does your agent get close to finding an optimal policy, i.e. reach the destination in the minimum possible time, and not incur any penalties? How would you describe an optimal policy for this problem?
 
 Yes! The agent gets very close to finding an optimal policy, given a good set of initial hyper parameters. The policy rate (epsilon) might sometimes influence the success of the smartcab since it results in a random move which may cause a long detour from the destination.
+An optimal policy for this problem would have a somewhat high learning rate (0.6-0.9) and a somewhat medium to low utility rate (gamma), and a small exploration rate (epsilon). Although the small exploration might be harmful in the beginning of the training (because the smartcab might get stuck in a local minimum of optimality), in the long run the smartcab will make smaller random "mistakes" when implementing what it learned.
