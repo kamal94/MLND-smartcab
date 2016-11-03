@@ -3,6 +3,7 @@ from environment import Agent, Environment
 from planner import RoutePlanner
 from simulator import Simulator
 import numpy as np
+import matplotlib.pyplot as plt
 
 
 
@@ -28,16 +29,17 @@ class LearningAgent(Agent):
 
     def reset(self, destination=None):
         self.planner.route_to(destination)
-        # TODO: Prepare for a new trip; reset any variables here, if required
-        if self.reached_last:
-            self.success_tracker.append(1.0)
-        else:
-            self.success_tracker.append(0.0)
+        #Prepare for a new trip; reset any variables here, if required
+        # if self.reached_last:
+        #     self.success_tracker.append(1.0)
+        # else:
+        #     self.success_tracker.append(0.0)
+        temp = self.reached_last
         self.reached_last = False
-        # print("success tracker:", self.success_tracker)
-        # print("overall success rate so far is", sum(self.success_tracker)/len(self.success_tracker))
-        # print("success rate of last 20 trials", sum(self.success_tracker[-20:])/20)
+        return temp
 
+    def params(self):
+        return self.alpha, self.gamma, self.epsilon
 
     #Translates a state to a number to access an array index
     #possible values are from 0 to 15
@@ -120,18 +122,43 @@ class LearningAgent(Agent):
         else:
             maxOldState = 0.5
         oldQ = self.Q[stateNum][self.action_to_num(action)]
-        self.Q[stateNum][self.action_to_num(action)] = self.alpha*(reward + self.gamma*maxOldState + (1-self.alpha)*oldQ)
+        self.Q[stateNum][self.action_to_num(action)] = self.alpha*(reward + self.gamma*maxOldState) + (1-self.alpha)*oldQ
         # print "LearningAgent.update(): deadline = {}, inputs = {}, action = {}, reward = {}".format(deadline, inputs, action, reward)  # [debug]
         # if t % 100 == 0:
         #     print("Q: ", np.array(self.Q))
 
 
+def plot_results(results):
+    #first process the data
+    for params, record in results.iteritems():
+        n = len(record)
+        alpha, gamma, epsilon = params
+
+        #calculate the cumulative success in the last 10 runs
+        temp_results= []
+        for i in np.arange(9, len(record)):
+            temp_results.append(sum(record[i-9:i+1])/10.0)
+        results[params] = temp_results
+
+        #plot the results of this simulation run given the parameters
+        plt.figure()
+        legend = "alpha: {}, gamma: {}, epsilon: {}".format(alpha, gamma, epsilon)
+        # print("numbers to compare: ", len(temp_results), len(list(range(1, n-8))))
+        plt.plot(list(range(1, n-8)), temp_results)
+        plt.legend('upper left', labels=[legend])
+        plt.show()
+    print(results)
+
+
 def run():
     import numpy as np
     import matplotlib.pyplot as plt
-    for epsilon in np.arange(0.1,0.5,0.1):
-        for gamma in np.arange(0.0,1.0, 0.1):
-            for alpha in np.arange(0.0, 1.0, 0.1):  
+
+    #test the simulation with a range of parameters
+    results = {}
+    for epsilon in np.arange(0.1,0.5,0.2):
+        for gamma in np.arange(0.0,1.0, 0.3):
+            for alpha in np.arange(0.0, 1.0, 0.3):  
                 """Run the agent for a finite number of trials."""
 
                 # Set up environment and agent
@@ -146,6 +173,10 @@ def run():
 
                 sim.run(n_trials=100)  # run for a specified number of trials
                 # NOTE: To quit midway, press Esc or close pygame window, or hit Ctrl+C on the command-line
+                (alpha, gamma, epsilon), res = sim.get_results()
+                results[(alpha, gamma, epsilon)] = res
+    plot_results(results)
+
 
 
 if __name__ == '__main__':

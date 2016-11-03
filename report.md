@@ -31,3 +31,22 @@ Since the first 4 states can either be true or false, the space for the state is
 #### What changes do you notice in the agent's behavior when compared to the basic driving agent when random actions were always taken? Why is this behavior occurring?
 
 The agent, after 50 iterations, starts to head straight to the target. This behavior is occurring because of the Q learning algorithm I implemented. This algorithm ensures that the smartcab learns from the rewards it receives from the environment. In essence, the Q learning algorithm records and updates what the smartcab took at each state and the reward it received for that action. The policy of the smartcab is to take the best action given by the Q algorithm 75% of the time, and make a random choice 25% of the time. The 25% random choice ensures that the smartcab does not get stuck in a local minimum due to improper initialization or an early mistake.  
+
+# Question 5
+#### Report the different values for the parameters tuned in your basic implementation of Q-Learning. For which set of parameters does the agent perform best? How well does the final driving agent perform?
+
+I implemented a graphing function taken from the different simulations with different ranges of values for alpha, gamma, and epsilon. This function plots the success rate of the last 10 trials, beginning from trial 10.
+
+The following are some of the good parameters, and one is labeled as BEST.
+
+alpha: 0.9, gamma: 0.0, epsilon:0.1
+alpha: 0.3, gamma: 0.9, epsilon:0.1
+alpha: 0.3, gamma: 0.3, epsilon:0.1
+alpha: 0.6, gamma: 0.3, epsilon:0.1 BEST
+alpha: 0.6, gamma: 0.3, epsilon:0.3
+
+
+# Question 6
+#### Does your agent get close to finding an optimal policy, i.e. reach the destination in the minimum possible time, and not incur any penalties? How would you describe an optimal policy for this problem?
+
+Yes! The agent gets very close to finding an optimal policy, given a good set of initial hyper parameters. The policy rate (epsilon) might sometimes influence the success of the smartcab since it results in a random move which may cause a long detour from the destination.

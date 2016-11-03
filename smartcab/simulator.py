@@ -35,7 +35,6 @@ class Simulator(object):
         self.current_time = 0.0
         self.last_updated = 0.0
         self.update_delay = update_delay  # duration between each step (in secs)
-
         self.display = display
         if self.display:
             try:
@@ -104,6 +103,9 @@ class Simulator(object):
 
             if self.quit:
                 break
+
+    def get_results(self):
+        return self.env.agent_params(), self.env.results
 
     def render(self):
         # Clear screen

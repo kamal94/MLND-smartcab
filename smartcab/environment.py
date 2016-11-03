@@ -34,6 +34,7 @@ class Environment(object):
     def __init__(self, num_dummies=3):
         self.num_dummies = num_dummies  # no. of dummy agents
         
+        self.results = []
         # Initialize simulation variables
         self.done = False
         self.t = 0
@@ -102,7 +103,14 @@ class Environment(object):
                 'heading': start_heading if agent is self.primary_agent else random.choice(self.valid_headings),
                 'destination': destination if agent is self.primary_agent else None,
                 'deadline': deadline if agent is self.primary_agent else None}
-            agent.reset(destination=(destination if agent is self.primary_agent else None))
+            if agent is self.primary_agent:
+                success = agent.reset(destination=(destination if agent is self.primary_agent else None))
+                self.results.append(success)
+            else:
+                agent.reset(destination=(destination if agent is self.primary_agent else None))
+
+    def agent_params(self):
+        return self.primary_agent.params()
 
     def step(self):
         #print "Environment.step(): t = {}".format(self.t)  # [debug]
