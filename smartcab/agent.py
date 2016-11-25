@@ -20,7 +20,7 @@ class LearningAgent(Agent):
         self.old_state = None
         #A (3*2^4)x4 matrix that represents states and possible actions.
         #Each value in that state row and action column represents the Q(S, A)
-        self.Q = [[0]*4 for _ in  range((2**7))] 
+        self.Q = [[0]*4 for _ in  range((2**13))] 
         self.alpha = 0.5 if alpha is None else alpha #The learning rate
         self.gamma = 0.5 if gamma is None else gamma #The utility factor
         self.epsilon = 0.05 if epsilon is None else epsilon #The random action in policy rate
@@ -45,20 +45,32 @@ class LearningAgent(Agent):
     #possible values are from 0 to 15
     def state_to_num(self, state):
         count = 0
-        if state['oncoming'] == True:
+        if state['oncoming'] == None:
             count += 2**0
-        if state['light'] == 'green':
+        elif state['oncoming'] == 'left':
             count += 2**1
-        if state['right'] == True:
+        elif state['oncoming'] == 'right':
             count += 2**2
-        if state['left'] == True:
-            count += 2 **3
-        if state['waypoint'] == 'left':
+        elif state['oncoming'] == 'forward':
+            count += 2**3
+        if state['left'] == None:
             count += 2**4
-        if state['waypoint'] == 'right':
+        elif state['left'] == 'left':
             count += 2**5
-        if state['waypoint'] == 'forward':
+        elif state['left'] == 'right':
             count += 2**6
+        elif state['left'] == 'forward':
+            count += 2**7
+        if state['light'] == 'green':
+            count += 2**8
+        else:
+            count += 2**9
+        if state['waypoint'] == 'left':
+            count += 2**10
+        if state['waypoint'] == 'right':
+            count += 2**11
+        if state['waypoint'] == 'forward':
+            count += 2**12
         return count
 
     #convers from action to number to allow for array indexing

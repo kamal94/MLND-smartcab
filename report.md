@@ -44,22 +44,22 @@ I implemented a graphing function taken from the different simulations with diff
 The following are some of the good parameters, and one is labeled as BEST.
 
 * alpha: 0.3, gamma: 0.0, epsilon:0.1 
-* alpha: 0.3, gamma: 0.3, epsilon:0.1 
+* alpha: 0.3, gamma: 0.0, epsilon:0.3
 * alpha: 0.3, gamma: 0.6, epsilon:0.1 
-* alpha: 0.3, gamma: 0.9, epsilon:0.1 
-* alpha: 0.6, gamma: 0.9, epsilon:0.1 
+* alpha: 0.6, gamma: 0.0, epsilon:0.1 
+* alpha: 0.6, gamma: 0.3, epsilon:0.1 
 * alpha: 0.9, gamma: 0.0, epsilon:0.1
-* alpha: 0.9, gamma: 0.0, epsilon:0.3
-* alpha: 0.9, gamma: 0.3, epsilon:0.1
+* alpha: 0.9, gamma: 0.6, epsilon:0.1
+* alpha: 0.9, gamma: 0.9, epsilon:0.1
 
 ![i](smartcab/images/plot0.30.00.1.jpg)
-![i](smartcab/images/plot0.30.30.1.jpg)
-![i](smartcab/images/plot0.30.60.1.jpg)
-![i](smartcab/images/plot0.30.90.1.jpg)
-![i](smartcab/images/plot0.60.90.1.jpg)
-![i](smartcab/images/plot0.90.00.1.jpg)
 ![i](smartcab/images/plot0.30.00.3.jpg)
-![i](smartcab/images/plot0.90.30.1.jpg)
+![i](smartcab/images/plot0.30.60.1.jpg)
+![i](smartcab/images/plot0.60.00.1.jpg)
+![i](smartcab/images/plot0.60.30.1.jpg)
+![i](smartcab/images/plot0.90.00.1.jpg)
+![i](smartcab/images/plot0.90.60.1.jpg)
+![i](smartcab/images/plot0.90.90.1.jpg)
 
 
 
@@ -69,14 +69,12 @@ The following are some of the good parameters, and one is labeled as BEST.
 Yes! The agent gets very close to finding an optimal policy, given a good set of initial hyper parameters. The policy rate (epsilon) might sometimes influence the success of the smartcab since it results in a random move which may cause a long detour from the destination.
 An optimal policy for this problem would have a somewhat high learning rate (0.6-0.9) and a somewhat medium to low utility rate (gamma), and a small exploration rate (epsilon). Although the small exploration might be harmful in the beginning of the training (because the smartcab might get stuck in a local minimum of optimality), in the long run the smartcab will make smaller random "mistakes" when implementing what it learned.
 One of the optimal policies taken from the simulation was the 
-* alpha: 0.9, gamma: 0.3, epsilon:0.1. 
+* alpha: 0.9, gamma: 0.6, epsilon:0.1. 
 
-![i](smartcab/images/plot0.90.30.1.jpg)
+![i](smartcab/images/plot0.90.60.1.jpg)
 I believe this is the best general learning parameters, but some others performed better in comparison, like
 * alpha: 0.3, gamma: 0.0, epsilon:0.1 
-* alpha: 0.3, gamma: 0.3, epsilon:0.1 
 
 which is a surprising parameter result. The first result is particularly surprising because it completely ignores gamma---the utility rate---and has a small learning rate, even though it appeared to learn quickly.
 
 ![i](smartcab/images/plot0.30.00.1.jpg)
-![i](smartcab/images/plot0.30.30.1.jpg)
