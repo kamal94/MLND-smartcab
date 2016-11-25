@@ -146,7 +146,10 @@ def plot_results(results):
         # print("numbers to compare: ", len(temp_results), len(list(range(1, n-8))))
         plt.plot(list(range(1, n-8)), temp_results)
         plt.legend('upper left', labels=[legend])
-        plt.show()
+        plt.xlabel("Trials")
+        plt.ylabel("Success rate on the past 10 trials")
+        # plt.show()
+        plt.savefig("images/plot"+str(alpha)+str(gamma)+str(epsilon)+".jpg")
     print(results)
 
 
