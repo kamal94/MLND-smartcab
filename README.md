@@ -30,3 +30,5 @@ Several techniques and concepts are used in this program, including
   * numpy
   * learning rate
   * logistic decline of trial rate
+
+!![](improved_smartcab.png)
